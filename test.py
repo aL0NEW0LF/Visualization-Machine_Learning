@@ -1,6 +1,7 @@
-# import os
-# import pandas as pd
-#
+import os
+import pandas as pd
+import glob
+
 # # Set the folder path where the CSV files are located
 # folder_path = "D:\PFE\\2nd_test\\2nd_test"
 #
@@ -24,8 +25,6 @@
 # # Save the workbook
 # writer._save()
 
-import os
-import glob
 
 folder_path = "D:/PFE/2nd_test/2nd_test"  # Replace with the actual folder path
 

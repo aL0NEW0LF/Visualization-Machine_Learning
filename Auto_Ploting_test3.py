@@ -26,7 +26,7 @@ for filename in os.listdir(data_folder):
 
         # Plot data
         fig, ax = plt.subplots(figsize=resolution)
-        ax.plot(time, column_data, label=f"Column {i + 1}")
+        ax.plot(time, column_data, linewidth=1, label=f"Column {i + 1}")
         ax.set_xlabel('Temps')
         ax.set_ylabel('Acceleration')
         ax.set_title(filename)
