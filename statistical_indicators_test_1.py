@@ -26,6 +26,7 @@ for sheet_name, df in dfs.items():
         max_val = df[col].max()
         min_val = df[col].min()
         mean_val = df[col].mean()
+        var_val = df[col].var()
         std_val = df[col].std()
         rms_val = sqrt(np.mean(np.square(df[col])))
         skewness_val = skew(df[col])
@@ -36,6 +37,7 @@ for sheet_name, df in dfs.items():
         file_stats[i + '_Max'] = max_val
         file_stats[i + '_Min'] = min_val
         file_stats[i + '_Mean'] = mean_val
+        file_stats[i + '_Var'] = var_val
         file_stats[i + '_Std'] = std_val
         file_stats[i + '_RMS'] = rms_val
         file_stats[i + '_Skewness'] = skewness_val
