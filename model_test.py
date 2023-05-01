@@ -28,12 +28,12 @@ Y = label_encoder.fit_transform(Y)
 
 # Build the LSTM/GRU model
 model = Sequential()
-model.add(LSTM(units=50, return_sequences=True, input_shape=(X.shape[1], 1)))
+model.add(LSTM(units=50, return_sequences=True, input_shape=(None, 1)))
 # model.add(GRU(units=50, return_sequences=True, input_shape=(X_train.shape[1], 1))) # Use this line for GRU
 model.add(LSTM(units=50))
 # model.add(GRU(units=50)) # Use this line for GRU
-model.add(Dense(units=1, activation='sigmoid'))
-model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.add(Dense(4, activation='softmax'))
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 model.summary()
 
 # Train the model

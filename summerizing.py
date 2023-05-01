@@ -46,4 +46,3 @@ for file in files:
 # save the result dataframe to an Excel file
 result_df.to_excel('D:/PFE/Statistical_Indicators/summary_indicators.xlsx', index=False)
 print(f"Statistical indicators saved to summary_indicators.")
-

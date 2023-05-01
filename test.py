@@ -49,11 +49,9 @@ data = pd.concat([file1['Bearing_1'], file1['Bearing_2'], file1['Bearing_3'], fi
 
 X_test = data.drop(['File Name', 'Failure_type'], axis=1)
 
-X_test.info()
-
 # Make predictions using the loaded model
 predictions = model.predict(X_test.values.reshape(X_test.shape[0], X_test.shape[1], 1))
-
+print(predictions)
 # Decode the predicted labels to string values
 label_encoder = LabelEncoder()
 label_encoder.fit(['Sans défaut', 'Défaut bague interne', 'Défaut bague externe', 'Défaut billes'])
