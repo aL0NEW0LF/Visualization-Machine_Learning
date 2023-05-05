@@ -39,24 +39,41 @@ from sklearn.preprocessing import LabelEncoder
 #     os.remove(pdf_file)
 
 # Load the saved model
-model = load_model('model_test.h5')
+model = load_model('model_test_4.h5')
 
 # Load the statistical indicators files
-file1 = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test1_testing - Copy.xlsx', sheet_name=None)
+file1 = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2_testing - Copy.xlsx', sheet_name='Bearing_1')
 
-# Combine all sheets into one dataframe
-data = pd.concat([file1['Bearing_1'], file1['Bearing_2'], file1['Bearing_3'], file1['Bearing_4']])
+# # Combine all sheets into one dataframe
+# data = pd.concat([file1['Bearing_1'], file1['Bearing_2'], file1['Bearing_3'], file1['Bearing_4']])
 
-X_test = data.drop(['File Name', 'Failure_type'], axis=1)
+X_test = file1.drop(['File Name', 'Failure_type'], axis=1)
 
 # Make predictions using the loaded model
 predictions = model.predict(X_test.values.reshape(X_test.shape[0], X_test.shape[1], 1))
 print(predictions)
-# Decode the predicted labels to string values
+
+# Take the mean of the predicted values for each row in the sequence
+mean_predictions = predictions.mean(axis=0)
+
+# Use argmax to get the index of the highest predicted value
+predicted_index = round(mean_predictions.arg())
+
+print(predicted_index)
+
+# # Decode the predicted labels to string values
+# label_encoder = LabelEncoder()
+# label_encoder.fit(['Sans défaut', 'Défaut bague interne', 'Défaut bague externe', 'Défaut billes'])
+# predicted_labels = label_encoder.inverse_transform(predictions.ravel().round().astype(int))
+#
+# # Print the predicted failure types for each data point in the sequence
+# for i, label in enumerate(predicted_labels):
+#     print(f"Data point {i+1}: {label}")
+
+# Map the index to the corresponding label
 label_encoder = LabelEncoder()
 label_encoder.fit(['Sans défaut', 'Défaut bague interne', 'Défaut bague externe', 'Défaut billes'])
-predicted_labels = label_encoder.inverse_transform(predictions.ravel().round().astype(int))
+predicted_label = label_encoder.inverse_transform([predicted_index])[0]
 
-# Print the predicted failure types for each data point in the sequence
-for i, label in enumerate(predicted_labels):
-    print(f"Data point {i+1}: {label}")
+# Print the predicted label for the entire sequence
+print(f"Predicted failure type for sequence: {predicted_label}")
