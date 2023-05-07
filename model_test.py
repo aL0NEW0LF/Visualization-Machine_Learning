@@ -49,6 +49,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from keras.models import Sequential
 from keras.layers import LSTM, GRU, Dense
+from keras.utils import to_categorical
 
 # Load the statistical indicators files
 file1 = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test1_testing - Copy.xlsx', sheet_name=None)
@@ -63,9 +64,18 @@ data = pd.concat([file2['Bearing_1'], file2['Bearing_2'], file2['Bearing_3'], fi
 X = data.drop(['File Name', 'Failure_type'], axis=1)
 Y = data['Failure_type']
 
-# Encode string labels to numerical values
-label_encoder = LabelEncoder()
-Y = label_encoder.fit_transform(Y)
+# create a dictionary to map class labels to integers
+class_dict = {'Sans défaut': 0, 'Défaut bague interne': 1, 'Défaut bague externe': 2, 'Défaut billes': 3}
+
+# encode class labels as integers
+Y = [class_dict[label] for label in Y]
+
+# Convert labels to one-hot encoding
+Y = to_categorical(Y)
+
+# # Encode string labels to numerical values
+# label_encoder = LabelEncoder()
+# Y = label_encoder.fit_transform(Y)
 
 # Reshape X to have 3 dimensions (number of samples, number of time steps, number of features)
 X = X.values.reshape(-1, X.shape[1], 1)
@@ -82,4 +92,4 @@ model.summary()
 model.fit(X, Y, epochs=50, batch_size=32)
 
 # Save the trained model
-model.save('model_test_4.h5')
+model.save('model_test_5.h5')
