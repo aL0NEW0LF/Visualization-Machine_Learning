@@ -14,7 +14,7 @@ label_encoder.classes_ = np.load('encod2.npy', allow_pickle=True)
 # Load and preprocess the new data
 new_data = []
 
-sheet_data = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2_testing.xlsx', sheet_name='Bearing_1')
+sheet_data = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test3_testing.xlsx', sheet_name='Bearing_3')
 # excel_data = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2_testing.xlsx', sheet_name=None)
 #
 # # Iterate over each sheet in the Excel file
