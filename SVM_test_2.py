@@ -29,15 +29,14 @@ sequence = excel_data['Test2_Bearing1'].drop(['File Name', 'Sheet Name', 'Column
 data2.append(sequence)
 sequence = excel_data['Test2_Bearing2'].drop(['File Name', 'Sheet Name', 'Column Name', 'Count'], axis=1).to_numpy()
 data2.append(sequence)
-sequence = excel_data['Test3_Bearing1'].drop(['File Name', 'Sheet Name', 'Column Name', 'Count'], axis=1).to_numpy()
-data2.append(sequence)
+# sequence = excel_data['Test3_Bearing1'].drop(['File Name', 'Sheet Name', 'Column Name', 'Count'], axis=1).to_numpy()
+# data2.append(sequence)
 sequence = excel_data['Test3_Bearing3'].drop(['File Name', 'Sheet Name', 'Column Name', 'Count'], axis=1).to_numpy()
 data2.append(sequence)
 sequence = excel_data['Test3_Bearing4'].drop(['File Name', 'Sheet Name', 'Column Name', 'Count'], axis=1).to_numpy()
 data2.append(sequence)
 
 labels = ['Defaut bague externe',
-          'Sans defaut',
           'Sans defaut',
           'Defaut bague externe',
           'Sans defaut']
