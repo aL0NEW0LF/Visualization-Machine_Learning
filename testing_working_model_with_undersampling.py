@@ -61,36 +61,68 @@ new_data1 = np.array(new_data1)
 # Pad the new data sequences to a fixed length
 padded_new_data1 = pad_sequences(new_data1, dtype='float32')
 
-# Make predictions
-predicted_probabilities = model_10col.predict(padded_new_data)
+data_list = [padded_new_data, padded_new_data1]
 
-print(predicted_probabilities)
-# Convert predicted probabilities to class labels
-predicted_labels = np.argmax(predicted_probabilities, axis=1)
+for j in data_list:
+    if j.shape[2] == 10:
+        # Make predictions
+        predicted_probabilities = model_10col.predict(j)
 
-print(predicted_labels)
-predicted_labels = label_encoder.inverse_transform(predicted_labels)
+        print(predicted_probabilities)
+        # Convert predicted probabilities to class labels
+        predicted_labels = np.argmax(predicted_probabilities, axis=1)
 
-# Print the predictions
-for i, label in enumerate(predicted_labels):
-    print(f"Prediction for sequence {i + 1}: {label}")
-# # Decode the predicted labels
+        print(predicted_labels)
+        predicted_labels = label_encoder.inverse_transform(predicted_labels)
+
+        # Print the predictions
+        for i, label in enumerate(predicted_labels):
+            print(f"Prediction for sequence {i + 1}: {label}")
+    elif j.shape[2] == 20:
+        # Make predictions
+        predicted_probabilities = model_20col.predict(j)
+
+        print(predicted_probabilities)
+        # Convert predicted probabilities to class labels
+        predicted_labels = np.argmax(predicted_probabilities, axis=1)
+
+        print(predicted_labels)
+        predicted_labels = label_encoder.inverse_transform(predicted_labels)
+
+        # Print the predictions
+        for i, label in enumerate(predicted_labels):
+            print(f"Prediction for sequence {i + 1}: {label}")
+
+# # Make predictions
+# predicted_probabilities = model_10col.predict(padded_new_data)
+#
+# print(predicted_probabilities)
+# # Convert predicted probabilities to class labels
+# predicted_labels = np.argmax(predicted_probabilities, axis=1)
+#
+# print(predicted_labels)
 # predicted_labels = label_encoder.inverse_transform(predicted_labels)
 #
 # # Print the predictions
 # for i, label in enumerate(predicted_labels):
 #     print(f"Prediction for sequence {i + 1}: {label}")
-
-# Make predictions
-predicted_probabilities1 = model_20col.predict(padded_new_data1)
-
-print(predicted_probabilities1)
-# Convert predicted probabilities to class labels
-predicted_labels1 = np.argmax(predicted_probabilities1, axis=1)
-
-print(predicted_labels1)
-predicted_labels1 = label_encoder.inverse_transform(predicted_labels1)
-
-# Print the predictions
-for i, label in enumerate(predicted_labels1):
-    print(f"Prediction for sequence {i + 1}: {label}")
+# # # Decode the predicted labels
+# # predicted_labels = label_encoder.inverse_transform(predicted_labels)
+# #
+# # # Print the predictions
+# # for i, label in enumerate(predicted_labels):
+# #     print(f"Prediction for sequence {i + 1}: {label}")
+#
+# # Make predictions
+# predicted_probabilities1 = model_20col.predict(padded_new_data1)
+#
+# print(predicted_probabilities1)
+# # Convert predicted probabilities to class labels
+# predicted_labels1 = np.argmax(predicted_probabilities1, axis=1)
+#
+# print(predicted_labels1)
+# predicted_labels1 = label_encoder.inverse_transform(predicted_labels1)
+#
+# # Print the predictions
+# for i, label in enumerate(predicted_labels1):
+#     print(f"Prediction for sequence {i + 1}: {label}")
