@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # path to the folder containing the data files
-data_folder = "D:/PFE/1nd_test/1nd_test"
+data_folder = "D:/PFE/1st_test/1st_test"
 
 # path to the folder where we will be saving the visuals
 visuals_folder = "D:/PFE/Visuals/Test 1"

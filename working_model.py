@@ -4,7 +4,7 @@ from keras.utils import pad_sequences
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 from keras.models import Sequential
-from keras.layers import LSTM, Dense, Dropout
+from keras.layers import LSTM, Dense, Dropout, SimpleRNN
 from keras.optimizers import Adam
 
 
@@ -64,7 +64,8 @@ np.save('encod2.npy', label_encoder.classes_)
 
 # Build the model
 model = Sequential()
-model.add(LSTM(64, input_shape=(None, 10)))  # Assuming num_features is the number of columns in each sheet
+# model.add(LSTM(64, input_shape=(None, 10)))  # Assuming num_features is the number of columns in each sheet
+model.add(SimpleRNN(64, input_shape=(None, 10)))
 model.add(Dense(4, activation='softmax'))  # Assuming num_classes is the number of unique labels
 
 # Compile the model
@@ -74,4 +75,4 @@ model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=
 model.fit(padded_data, encoded_labels, batch_size=32, epochs=10)
 
 # Save the trained model
-model.save('another_model_test.h5')
+model.save('another_model_test_2.h5')

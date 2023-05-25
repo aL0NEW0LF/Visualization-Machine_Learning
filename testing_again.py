@@ -5,7 +5,7 @@ from keras.utils import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 
 # Load the saved model
-model = load_model('another_model_test.h5')
+model = load_model('another_model_test_2.h5')
 
 # Decode the predicted labels to get the original string labels
 label_encoder = LabelEncoder()
