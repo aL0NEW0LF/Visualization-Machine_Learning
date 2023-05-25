@@ -4,7 +4,7 @@ from keras.utils import pad_sequences
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 from keras.models import Sequential
-from keras.layers import LSTM, Dense, Dropout
+from keras.layers import LSTM, Dense, Dropout, SimpleRNN
 from keras.optimizers import Adam
 
 # Decode the predicted labels to get the original string labels
@@ -92,7 +92,8 @@ encoded_labels_20col = label_encoder.transform(labels_20col)
 
 # Build the model
 model_10col = Sequential()
-model_10col.add(LSTM(64, input_shape=(None, 10)))  # Assuming num_features is the number of columns in each sheet
+model_10col.add(LSTM(64, input_shape=(None, 10), return_sequences=True))  # Assuming num_features is the number of columns in each sheet
+model_10col.add(SimpleRNN(64))
 model_10col.add(Dense(4, activation='softmax'))  # Assuming num_classes is the number of unique labels
 
 # Compile the model_10col
@@ -106,7 +107,8 @@ model_10col.save('working_model_with_undersampling_10col.h5')
 
 # Build the model
 model_20col = Sequential()
-model_20col.add(LSTM(64, input_shape=(None, 20)))  # Assuming num_features is the number of columns in each sheet
+model_20col.add(LSTM(64, input_shape=(None, 20), return_sequences=True))  # Assuming num_features is the number of columns in each sheet
+model_20col.add(SimpleRNN(64))
 model_20col.add(Dense(4, activation='softmax'))  # Assuming num_classes is the number of unique labels
 
 # Compile the model_20col

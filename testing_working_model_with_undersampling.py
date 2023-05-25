@@ -5,8 +5,8 @@ from keras.utils import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 
 # Load the saved model
-model_10col = load_model('working_model_with_undersampling_10col.h5')
-model_20col = load_model('working_model_with_undersampling_20col.h5')
+model_10col = load_model('working_model_with_undersampling_10col_2.h5')
+model_20col = load_model('working_model_with_undersampling_20col_2.h5')
 
 # Decode the predicted labels to get the original string labels
 label_encoder = LabelEncoder()
