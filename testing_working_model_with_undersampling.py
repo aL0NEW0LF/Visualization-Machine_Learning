@@ -1,12 +1,18 @@
 import numpy as np
 import pandas as pd
+import graphviz
+import pydot
 from keras.models import load_model
-from keras.utils import pad_sequences
+from keras.utils import pad_sequences, plot_model
 from sklearn.preprocessing import LabelEncoder
 
 # Load the saved model
 model_10col = load_model('working_model_with_undersampling_10col_2.h5')
 model_20col = load_model('working_model_with_undersampling_20col_2.h5')
+
+# dot_img_file = 'D:/PFE/Statistical_Indicators/model_1.png'
+#
+# plot_model(model_10col, to_file=dot_img_file, show_shapes=True, dpi=300, show_layer_activations=True, show_trainable=True)
 
 # Decode the predicted labels to get the original string labels
 label_encoder = LabelEncoder()
