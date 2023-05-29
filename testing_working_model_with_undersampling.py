@@ -5,16 +5,16 @@ from keras.utils import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 
 # Load the saved model
-model_10col = load_model('best_model.h5')
-model_20col = load_model('working_model_with_undersampling_20col_2.h5')
+model_10col = load_model('best_model_10col.h5')
+model_20col = load_model('best_model_20col.h5')
 
 # Decode the predicted labels to get the original string labels
 label_encoder = LabelEncoder()
 label_encoder.classes_ = np.load('encod2.npy', allow_pickle=True)
 
-file_paths1 = ['D:/PFE/Statistical_Indicators/Statistical_Indicators_Test1_testing.xlsx']
+file_paths1 = ['D:/PFE/Statistical_Indicators/Statistical_Indicators_Test1.xlsx']
 
-file_paths = ['D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2_testing.xlsx', 'D:/PFE/Statistical_Indicators/Statistical_Indicators_Test3_testing.xlsx']
+file_paths = ['D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2.xlsx', 'D:/PFE/Statistical_Indicators/Statistical_Indicators_Test3.xlsx']
 
 # Load and preprocess the new data
 new_data = []

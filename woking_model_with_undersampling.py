@@ -12,9 +12,9 @@ from keras.optimizers import Adam
 label_encoder = LabelEncoder()
 label_encoder.classes_ = np.load('encod2.npy', allow_pickle=True)
 
-file1 = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test1_testing.xlsx', sheet_name=None)
-file2 = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2_testing.xlsx', sheet_name=None)
-file3 = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test3_testing.xlsx', sheet_name=None)
+file1 = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test1.xlsx', sheet_name=None)
+file2 = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2.xlsx', sheet_name=None)
+file3 = pd.read_excel('D:/PFE/Statistical_Indicators/Statistical_Indicators_Test3.xlsx', sheet_name=None)
 
 # Load and preprocess the data
 SansDefaut_data_20col = []
@@ -88,7 +88,7 @@ SansDefaut_data_10col = np.array(SansDefaut_data_10col)
 encoded_labels_10col = label_encoder.transform(labels_10col)
 
 # Convert data and labels to numpy arrays
-data_20col = np.array(data_20col)
+# data_20col = np.array(data_20col)
 labels_20col = np.array(labels_20col)
 SansDefaut_data_20col = np.array(SansDefaut_data_20col)
 
