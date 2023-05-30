@@ -4,11 +4,12 @@ import graphviz
 import pydot
 from keras.models import load_model
 from keras.utils import pad_sequences, plot_model
+from sklearn.metrics import precision_score
 from sklearn.preprocessing import LabelEncoder
 
 # Load the saved model
-model_10col = load_model('working_model_with_undersampling_10col_2.h5')
-model_20col = load_model('working_model_with_undersampling_20col_2.h5')
+model_10col = load_model('working_model_with_undersampling_10col.h5')
+model_20col = load_model('working_model_with_undersampling_20col.h5')
 
 # dot_img_file = 'D:/PFE/Statistical_Indicators/model_1.png'
 #
@@ -25,6 +26,22 @@ file_paths = ['D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2.xlsx',
 # Load and preprocess the new data
 new_data = []
 new_data1 = []
+true_labels_10col = ['Defaut bague externe',
+                     'Sans defaut',
+                     'Sans defaut',
+                     'Sans defaut',
+                     'Sans defaut',
+                     'Sans defaut',
+                     'Defaut bague externe',
+                     'Sans defaut']
+
+true_labels_20col = ['Sans defaut',
+                     'Sans defaut',
+                     'Defaut bague intern',
+                     'Defaut billes']
+
+true_labels_10col = np.array(true_labels_10col)
+true_labels_20col = np.array(true_labels_20col)
 
 # Iterate over each Excel file
 for file_path in file_paths1:
@@ -81,6 +98,14 @@ for j in data_list:
         print(predicted_labels)
         predicted_labels = label_encoder.inverse_transform(predicted_labels)
 
+        # Calculate accuracy
+        accuracy_10col= np.mean(predicted_labels == true_labels_10col)
+
+        # Calculate precision
+        precision_10col = precision_score(true_labels_10col, predicted_labels, average=None)
+
+        print(accuracy_10col)
+        print(precision_10col)
         # Print the predictions
         for i, label in enumerate(predicted_labels):
             print(f"Prediction for sequence {i + 1}: {label}")
@@ -95,9 +120,18 @@ for j in data_list:
         print(predicted_labels)
         predicted_labels = label_encoder.inverse_transform(predicted_labels)
 
+        # Calculate accuracy
+        accuracy_20col = np.mean(predicted_labels == true_labels_20col)
+
+        # Calculate precision
+        precision_20col = precision_score(true_labels_20col, predicted_labels, average=None)
+
+        print(accuracy_20col)
+        print(precision_20col)
         # Print the predictions
         for i, label in enumerate(predicted_labels):
             print(f"Prediction for sequence {i + 1}: {label}")
+
 
 # # Make predictions
 # predicted_probabilities = model_10col.predict(padded_new_data)
