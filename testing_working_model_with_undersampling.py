@@ -2,18 +2,29 @@ import numpy as np
 import pandas as pd
 import graphviz
 import pydot
+import pylab
 from keras.models import load_model
-from keras.utils import pad_sequences, plot_model
+from keras.utils import pad_sequences, plot_model, model_to_dot
 from sklearn.metrics import precision_score
 from sklearn.preprocessing import LabelEncoder
 
 # Load the saved model
-model_10col = load_model('working_model_with_undersampling_10col.h5')
+model_10col = load_model('working_model_with_undersampling_10col_2.h5')
 model_20col = load_model('working_model_with_undersampling_20col.h5')
 
 # dot_img_file = 'D:/PFE/Statistical_Indicators/model_1.png'
 #
-# plot_model(model_10col, to_file=dot_img_file, show_shapes=True, dpi=300, show_layer_activations=True, show_trainable=True)
+# plot_model(model_10col, to_file=dot_img_file, show_shapes=True, dpi=300, show_layer_activations=True,
+#            show_trainable=True)
+#
+# model_graph = model_to_dot(model_10col, show_shapes=True, show_dtype=True, show_layer_names=True, rankdir="TB",
+#                            expand_nested=True, dpi=300, layer_range=None, show_layer_activations=True,
+#                            show_trainable=True)
+#
+# model_graph.write_png('D:/PFE/Statistical_Indicators/model_1____.png')
+
+# graph = pydot.graph_from_dot_data(model_graph)
+# graph.write_png('model_1_graph.png')
 
 # Decode the predicted labels to get the original string labels
 label_encoder = LabelEncoder()
