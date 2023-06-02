@@ -8,7 +8,7 @@ from keras.layers import LSTM, Dense, Dropout, SimpleRNN
 from keras.optimizers import Adam
 
 
-file_paths = ['D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2_testing.xlsx', 'D:/PFE/Statistical_Indicators/Statistical_Indicators_Test3_testing.xlsx']
+file_paths = ['D:/PFE/Statistical_Indicators/Statistical_Indicators_Test2.xlsx', 'D:/PFE/Statistical_Indicators/Statistical_Indicators_Test3.xlsx']
 # Load and preprocess the data
 data = []
 labels = []
@@ -64,15 +64,18 @@ np.save('encod2.npy', label_encoder.classes_)
 
 # Build the model
 model = Sequential()
-# model.add(LSTM(64, input_shape=(None, 10)))  # Assuming num_features is the number of columns in each sheet
-model.add(SimpleRNN(64, input_shape=(None, 10)))
+model.add(LSTM(64, input_shape=(None, 10), return_sequences=True))  # Assuming num_features is the number of columns in each sheet
+model.add(SimpleRNN(64))
 model.add(Dense(4, activation='softmax'))  # Assuming num_classes is the number of unique labels
 
 # Compile the model
 model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # Train the model
-model.fit(padded_data, encoded_labels, batch_size=32, epochs=10)
+history = model.fit(padded_data, encoded_labels, batch_size=32, epochs=10)
+
+print(history.history['accuracy'])
+print(history.history['loss'])
 
 # Save the trained model
 model.save('another_model_test_2.h5')

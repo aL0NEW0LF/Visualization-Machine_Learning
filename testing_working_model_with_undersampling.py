@@ -53,13 +53,13 @@ for file_path in file_paths:
 new_data = np.array(new_data)
 
 # Pad the new data sequences to a fixed length
-padded_new_data = pad_sequences(new_data, dtype='float32')
+padded_new_data = pad_sequences(new_data, dtype='float32', maxlen=10000)
 
 # Convert data and labels to numpy arrays
 new_data1 = np.array(new_data1)
 
 # Pad the new data sequences to a fixed length
-padded_new_data1 = pad_sequences(new_data1, dtype='float32')
+padded_new_data1 = pad_sequences(new_data1, dtype='float32', maxlen=10000)
 
 data_list = [padded_new_data, padded_new_data1]
 
