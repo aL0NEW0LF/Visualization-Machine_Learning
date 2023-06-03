@@ -87,7 +87,7 @@ encoded_labels_20col = label_encoder.transform(labels_20col)
 # Select a subset of 'Sans defaut' data randomly for each combination
 best_accuracy_10col = 0.0
 best_accuracy_10col_2 = 0.0
-best_loss_10col = 2
+best_loss_10col = 3
 best_model_10col = None
 
 # Generate all possible combinations of 'Sans defaut' indices
@@ -111,7 +111,7 @@ for combination_10col in combinations_10col:
     model_10col.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     # Compile the model_10col
-    history_10col = model_10col.fit(padded_data_10col, encoded_labels_10col, batch_size=64, epochs=40)
+    history_10col = model_10col.fit(padded_data_10col, encoded_labels_10col, batch_size=64, epochs=20)
 
     # Evaluate the model_10col
     _, accuracy_10col_2 = model_10col.evaluate(padded_data_10col, encoded_labels_10col)

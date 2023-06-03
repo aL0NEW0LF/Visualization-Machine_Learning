@@ -9,22 +9,9 @@ from sklearn.metrics import precision_score
 from sklearn.preprocessing import LabelEncoder
 
 # Load the saved model
-model_10col = load_model('working_model_with_undersampling_10col.h5')
-model_20col = load_model('working_model_with_undersampling_20col.h5')
+model_10col = load_model('model_SimpleRNN_10col.h5')
+model_20col = load_model('model_SimpleRNN_20col.h5')
 
-# dot_img_file = 'D:/PFE/Statistical_Indicators/model_1.png'
-#
-# plot_model(model_10col, to_file=dot_img_file, show_shapes=True, dpi=300, show_layer_activations=True,
-#            show_trainable=True)
-#
-# model_graph = model_to_dot(model_10col, show_shapes=True, show_dtype=True, show_layer_names=True, rankdir="TB",
-#                            expand_nested=True, dpi=300, layer_range=None, show_layer_activations=True,
-#                            show_trainable=True)
-#
-# model_graph.write_png('D:/PFE/Statistical_Indicators/model_1____.png')
-
-# graph = pydot.graph_from_dot_data(model_graph)
-# graph.write_png('model_1_graph.png')
 
 # Decode the predicted labels to get the original string labels
 label_encoder = LabelEncoder()
@@ -142,38 +129,3 @@ for j in data_list:
         # Print the predictions
         for i, label in enumerate(predicted_labels):
             print(f"Prediction for sequence {i + 1}: {label}")
-
-
-# # Make predictions
-# predicted_probabilities = model_10col.predict(padded_new_data)
-#
-# print(predicted_probabilities)
-# # Convert predicted probabilities to class labels
-# predicted_labels = np.argmax(predicted_probabilities, axis=1)
-#
-# print(predicted_labels)
-# predicted_labels = label_encoder.inverse_transform(predicted_labels)
-#
-# # Print the predictions
-# for i, label in enumerate(predicted_labels):
-#     print(f"Prediction for sequence {i + 1}: {label}")
-# # # Decode the predicted labels
-# # predicted_labels = label_encoder.inverse_transform(predicted_labels)
-# #
-# # # Print the predictions
-# # for i, label in enumerate(predicted_labels):
-# #     print(f"Prediction for sequence {i + 1}: {label}")
-#
-# # Make predictions
-# predicted_probabilities1 = model_20col.predict(padded_new_data1)
-#
-# print(predicted_probabilities1)
-# # Convert predicted probabilities to class labels
-# predicted_labels1 = np.argmax(predicted_probabilities1, axis=1)
-#
-# print(predicted_labels1)
-# predicted_labels1 = label_encoder.inverse_transform(predicted_labels1)
-#
-# # Print the predictions
-# for i, label in enumerate(predicted_labels1):
-#     print(f"Prediction for sequence {i + 1}: {label}")
