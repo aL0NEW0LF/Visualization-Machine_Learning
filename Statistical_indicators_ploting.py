@@ -63,3 +63,29 @@ for sheet_name, df in data.items():
 
         # clear plot for next file
         plt.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
